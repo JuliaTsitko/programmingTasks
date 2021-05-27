@@ -8,16 +8,16 @@ string z2Text = "The value of z2 = ";
 string enterText = "Enter Alfa between or equal to 0 and 360";
 string exitText = "Do you want to continue? (1 for Yes, any key for No)";
 
-void countZ1(double alfa)
+double countZ1(double alfa)
 {
     double z1 = (1 - 2 * pow(sin(alfa), 2)) / (1 + sin(2 * alfa));
-    cout << z1Text << z1 << endl;
+    return z1;
 }
 
-void countZ2(double alfa)
+double countZ2(double alfa)
 {
     double z2 = (1 - tan(alfa)) / (1 + tan(alfa));
-    cout << z2Text << z2 << endl;
+    return z2;
 }
 
 bool isNumber(string x)
@@ -38,8 +38,10 @@ int countLinearAlogoritm()
     alfa = isNumber(input) ? stoi(input) : -1;
     if (alfa >= 0 && alfa <= 360)
     {
-        countZ1(alfa);
-        countZ2(alfa);
+        double z1 = countZ1(alfa);
+        double z2 = countZ2(alfa);
+        cout << z1Text << z1 << endl << z2Text << z2 << endl;
+
         bool answer;
         cout << exitText << endl;
         cin >> answer;
