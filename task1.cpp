@@ -47,9 +47,8 @@ int countLinearAlogoritm()
             countLinearAlogoritm();
         }
         return 0;
-    } else {
-        countLinearAlogoritm();
     }
+    countLinearAlogoritm();
 }
 
 int main() 
