@@ -9,6 +9,7 @@ string exitText = "Do you want to continue? (1 for Yes, any key for No)";
 string resultText = "Function result = ";
 string positiveText = "x > 0 The Result: ";
 string negativeText = "x <= 0 The Result: ";
+string zeroDivision = "You cannot divide by zero";
 
 // функция принимающая строковое значение, проверяющее может ли оно являться числовым значением, возвращает булиновое значение
 bool isNumber(string x)
@@ -27,11 +28,16 @@ double countX(double z)
     double x;
     // вычисление при z > 0
     if (z > 0) {
-        x = 1 / (pow(z, 2) + 2 * z);
-        // вывод сообщения из ветви z > 0
-        cout << positiveText << x << endl;
-        return x;
-        
+        double a = (pow(z, 2) + 2 * z);
+        if (a > 0 || a < 0) {
+            x = 1 / a;
+            // вывод сообщения из ветви z > 0
+            cout << positiveText << x << endl;
+            return x;
+        }
+        // вывод сообщения о делении на 0
+        cout << zeroDivision << endl;
+        return 0;
     }
     // вычисление при z <= 0
     x = 1 - pow(z, 3);
@@ -64,9 +70,12 @@ int countFunction()
         z = stoi(input);
         // сохранения результатов вычислений
         double x = countX(z);
-        double y = countY(x);
-        // вывод результатов вычислений в консоль
-        cout << resultText << y << endl;
+        // проверка возвращаемого значения предыдущих расчетов
+        if (x < 0 || x > 0) {
+            double y = countY(x);
+            // вывод результатов вычислений в консоль
+            cout << resultText << y << endl;
+        }
 
         // объявление переменной
         bool isContinue;
